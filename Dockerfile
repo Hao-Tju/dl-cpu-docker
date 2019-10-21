@@ -18,7 +18,7 @@ RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-4.
      /opt/conda/bin/conda clean -ya
 ENV PATH /opt/conda/envs/pytorch-py37/bin:$PATH
 #RUN conda install --name pytorch-py37 -c soumith magma-cuda80 && /opt/conda/bin/conda clean -ya
-RUN conda install --name pytorch-py37 pytorch torchvision jupyter -c soumith && /opt/conda/bin/conda clean -ya
+RUN conda install --name pytorch-py37 pytorch torchvision jupyter matplotlib pillow -c soumith && /opt/conda/bin/conda clean -ya
 
 WORKDIR /workspace
 RUN chmod -R a+w /workspace
