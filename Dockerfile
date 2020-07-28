@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          libpng-dev && \
      rm -rf /var/lib/apt/lists/*
 
-RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
+RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh  && \
      chmod +x ~/miniconda.sh && \
      ~/miniconda.sh -b -p /opt/conda && \
      rm ~/miniconda.sh && \
