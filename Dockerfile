@@ -1,28 +1,29 @@
+# -*- mode: dockerfile -*-
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+# Dockerfile to build MXNet CPU with MKL
+
 FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-         build-essential \
-         git \
-         curl \
-         ca-certificates \
-         libjpeg-dev \
-         libpng-dev && \
-     rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get install -y wget python-dev gcc && \
+    wget https://bootstrap.pypa.io/get-pip.py && \
+    python get-pip.py
 
-RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh  && \
-     chmod +x ~/miniconda.sh && \
-     ~/miniconda.sh -b -p /opt/conda && \
-     rm ~/miniconda.sh && \
-     /opt/conda/bin/conda install conda-build && \
-     /opt/conda/bin/conda create -y --name pytorch-py37 python=3.7 numpy pyyaml scipy ipython mkl&& \
-     /opt/conda/bin/conda clean -ya
-ENV PATH /opt/conda/envs/pytorch-py37/bin:/opt/conda/bin:$PATH
-#RUN conda install --name pytorch-py37 -c soumith magma-cuda80 && /opt/conda/bin/conda clean -ya
-RUN conda install --name pytorch-py37 pytorch torchvision cpuonly -c pytorch
-RUN conda install jupyterlab matplotlib -c conda-forge
-RUN conda clean -ya
-
-WORKDIR /workspace
-RUN chmod -R a+w /workspace
-RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
-    echo "c.NotebookApp.open_browser=True" >> /root/.jupyter/jupyter_notebook_config.py
+RUN pip install mxnet-mkl==1.6.0 gluoncv jupyterlab scipy numpy
+RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && echo "c.NotebookApp.open_browser=True" >> /root/.jupyter/jupyter_notebook_config.py
