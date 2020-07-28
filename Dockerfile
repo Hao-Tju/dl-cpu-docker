@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          libpng-dev && \
      rm -rf /var/lib/apt/lists/*
 
-RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-4.2.12-Linux-x86_64.sh  && \
+RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
      chmod +x ~/miniconda.sh && \
      ~/miniconda.sh -b -p /opt/conda && \
      rm ~/miniconda.sh && \
@@ -19,7 +19,7 @@ RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/min
 ENV PATH /opt/conda/envs/pytorch-py37/bin:/opt/conda/bin:$PATH
 #RUN conda install --name pytorch-py37 -c soumith magma-cuda80 && /opt/conda/bin/conda clean -ya
 RUN conda install --name pytorch-py37 pytorch torchvision cpuonly -c pytorch
-RUN conda install --name jupyter matplotlib
+RUN conda install jupyter matplotlib -c conda-forge
 RUN conda clean -ya
 
 WORKDIR /workspace
