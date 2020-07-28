@@ -19,7 +19,7 @@ RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/min
 ENV PATH /opt/conda/envs/pytorch-py37/bin:/opt/conda/bin:$PATH
 #RUN conda install --name pytorch-py37 -c soumith magma-cuda80 && /opt/conda/bin/conda clean -ya
 RUN conda install --name pytorch-py37 pytorch torchvision cpuonly -c pytorch
-RUN conda install jupyter matplotlib -c conda-forge
+RUN conda install jupyterlab matplotlib -c conda-forge
 RUN conda clean -ya
 
 WORKDIR /workspace
