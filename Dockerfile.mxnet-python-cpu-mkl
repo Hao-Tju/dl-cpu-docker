@@ -25,5 +25,5 @@ RUN apt-get update && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py
 
-RUN pip install mxnet-mkl==1.6.0 gluoncv jupyterlab
+RUN pip install mxnet-mkl==1.6.0 gluoncv jupyterlab scipy numpy
 RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && echo "c.NotebookApp.open_browser=True" >> /root/.jupyter/jupyter_notebook_config.py
