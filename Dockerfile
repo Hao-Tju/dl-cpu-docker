@@ -24,3 +24,5 @@ RUN conda clean -ya
 
 WORKDIR /workspace
 RUN chmod -R a+w /workspace
+RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.open_browser=True" >> /root/.jupyter/jupyter_notebook_config.py
