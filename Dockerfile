@@ -21,7 +21,7 @@
 FROM ubuntu:18.04
 
 RUN apt-get update && \
-    apt-get install -y wget python3-dev gcc && \
+    apt-get install -y wget python3-dev gcc python3-opencv && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py
 
