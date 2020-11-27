@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
          build-essential \
@@ -16,6 +16,7 @@ RUN curl -o ~/miniconda.sh -O  https://mirrors.tuna.tsinghua.edu.cn/anaconda/min
      /opt/conda/bin/conda install conda-build && \
      /opt/conda/bin/conda create -y --name pytorch-py37 python=3.7 numpy pyyaml scipy ipython mkl&& \
      /opt/conda/bin/conda clean -ya
+
 ENV PATH /opt/conda/envs/pytorch-py37/bin:/opt/conda/bin:$PATH
 #RUN conda install --name pytorch-py37 -c soumith magma-cuda80 && /opt/conda/bin/conda clean -ya
 RUN conda install --name pytorch-py37 pytorch torchvision cpuonly -c pytorch
