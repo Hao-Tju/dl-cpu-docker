@@ -40,6 +40,7 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted 
     rm get-pip.py
 
 RUN pip3 install mxnet gluoncv jupyterlab scipy numpy==1.16.6 d2l decord
+
 RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
     echo "c.NotebookApp.open_browser=False" >> /root/.jupyter/jupyter_notebook_config.py && \
     echo "c.NotebookApp.token='DVQShareMXNet'" >> /root/.jupyter/jupyter_notebook_config.py
