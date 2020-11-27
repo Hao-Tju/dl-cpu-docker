@@ -20,7 +20,7 @@
 
 FROM ubuntu:20.04
 
-ENV tz=Asia/Shanghai
+ENV TZ=Asia/Shanghai
 
 RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse" > /etc/apt/sources.list && \
     echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse" >> /etc/apt/sources.list && \
@@ -36,7 +36,10 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted 
     apt-get update && \
     apt-get install -y wget python3-dev gcc python3-opencv && \
     wget https://bootstrap.pypa.io/get-pip.py && \
-    python3 get-pip.py
+    python3 get-pip.py && \
+    rm get-pip.py
 
-RUN pip3 install mxnet==1.7.0 gluoncv jupyterlab scipy numpy==1.16.6 d2l decord
-RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && echo "c.NotebookApp.open_browser=False" >> /root/.jupyter/jupyter_notebook_config.py
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple mxnet gluoncv jupyterlab scipy numpy==1.16.6 d2l decord
+RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.open_browser=False" >> /root/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.token='DVQShareMXNet'" >> /root/.jupyter/jupyter_notebook_config.py
