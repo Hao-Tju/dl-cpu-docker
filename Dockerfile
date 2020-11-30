@@ -34,7 +34,7 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted 
     echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     apt-get update && \
-    apt-get install -y wget python3-dev gcc python3-opencv && \
+    apt-get install -y wget python3-dev gcc python3-opencv graphviz && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
     rm get-pip.py
