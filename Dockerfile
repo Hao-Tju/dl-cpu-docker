@@ -39,7 +39,7 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted 
     python3 get-pip.py && \
     rm get-pip.py
 
-RUN pip3 install mxnet gluoncv jupyterlab scipy numpy==1.16.6 d2l decord onnx pypeln autopep8 insightface
+RUN pip3 install mxnet gluoncv jupyterlab scipy numpy d2l decord onnx pypeln autopep8 insightface
 
 RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
     echo "c.NotebookApp.open_browser=False" >> /root/.jupyter/jupyter_notebook_config.py && \
