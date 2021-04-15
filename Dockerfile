@@ -34,17 +34,23 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted 
     echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     apt-get update && \
-    apt-get install -y wget python3-dev gcc python3-opencv graphviz && \
+    apt-get install -y wget python3-dev gcc python3-opencv graphviz libopenblas-dev zsh && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
     rm get-pip.py
 
 RUN pip3 --no-cache-dir install mxnet gluoncv jupyterlab scipy numpy==1.18.5 d2l decord onnx pypeln autopep8 insightface
 ## Install packages for medical images.
-RUN apt-get install -y libatlas-dev
-RUN pip3 --no-cache-dir install simpleitk scipy skimage
+RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
+    chsh -s $(which zsh) && \
+    echo 'ZSH_THEME="candy"' >> ~/.zshrc &&
+    echo "DISABLE_AUTO_UPDATE=true" >> ~/.zshrc
+RUN pip3 --no-cache-dir install simpleitk skimage
 ## Install pytorch-cpu version.
 RUN pip3 --no-cache-dir install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+
+## Update the pip3 repository to the one provided by the TUNA group.
+RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
     echo "c.NotebookApp.open_browser=False" >> /root/.jupyter/jupyter_notebook_config.py && \
