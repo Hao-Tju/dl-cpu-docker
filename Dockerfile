@@ -50,7 +50,7 @@ RUN pip3 --no-cache-dir install simpleitk skimage
 RUN pip3 --no-cache-dir install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 
 ## Update the pip3 repository to the one provided by the TUNA group.
-RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3 config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple
 
 RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
     echo "c.NotebookApp.open_browser=False" >> /root/.jupyter/jupyter_notebook_config.py && \
