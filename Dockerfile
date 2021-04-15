@@ -18,6 +18,7 @@ ENV PATH /opt/conda/envs/pytorch-py37/bin:/opt/conda/bin:$PATH
 #RUN conda install --name pytorch-py37 -c soumith magma-cuda80 && /opt/conda/bin/conda clean -ya
 RUN conda install pytorch torchvision torchaudio cpuonly -c pytorch
 RUN conda install jupyterlab matplotlib -c conda-forge
+RUN conda install -c simpleitk simpleitk
 RUN conda clean -ya
 
 WORKDIR /workspace
