@@ -34,12 +34,12 @@ ENV TZ=Asia/Shanghai
 ##     echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     apt-get update && \
-    apt-get install -y wget python3-dev gcc python3-opencv graphviz libopenblas-dev zsh && \
+    apt-get install -y wget python3-dev gcc python3-opencv graphviz libopenblas-dev zsh python-scipy && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
     rm get-pip.py
 
-RUN pip3 --no-cache-dir install mxnet gluoncv jupyterlab scipy numpy==1.18.5 d2l decord onnx pypeln autopep8 insightface
+RUN pip3 --no-cache-dir install mxnet gluoncv jupyterlab numpy d2l decord onnx pypeln autopep8 insightface
 ## Install packages for medical images.
 RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
     chsh -s $(which zsh) && \
