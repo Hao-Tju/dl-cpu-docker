@@ -34,7 +34,7 @@ ENV TZ=Asia/Shanghai
 ##     echo "deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse" >> /etc/apt/sources.list && \
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     apt-get update && \
-    apt-get install -y wget python3-dev gcc python3-opencv graphviz libopenblas-dev zsh python3-scipy && \
+    apt-get install -y wget git python3-dev gcc python3-opencv graphviz libopenblas-dev zsh python3-scipy && \
     wget https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py && \
     rm get-pip.py
