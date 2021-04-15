@@ -45,7 +45,7 @@ RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/t
     chsh -s $(which zsh) && \
     echo 'ZSH_THEME="candy"' >> ~/.zshrc && \
     echo "DISABLE_AUTO_UPDATE=true" >> ~/.zshrc
-RUN pip3 --no-cache-dir install simpleitk skimage
+RUN pip3 --no-cache-dir install simpleitk scikit-image
 ## Install pytorch-cpu version.
 RUN pip3 --no-cache-dir install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 
