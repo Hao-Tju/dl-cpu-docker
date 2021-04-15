@@ -1,4 +1,5 @@
-# pytorch-cpu-docker
+## pytorch-mxnet-cpu-docker
+
 Pytorch + MXNet container for Docker (CPU version)
 
 Cloned from https://github.com/mapler/dockerfiles and updated Ubuntu/Python versions
