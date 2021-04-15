@@ -43,7 +43,7 @@ RUN pip3 --no-cache-dir install mxnet gluoncv jupyterlab scipy numpy==1.18.5 d2l
 ## Install packages for medical images.
 RUN sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
     chsh -s $(which zsh) && \
-    echo 'ZSH_THEME="candy"' >> ~/.zshrc &&
+    echo 'ZSH_THEME="candy"' >> ~/.zshrc && \
     echo "DISABLE_AUTO_UPDATE=true" >> ~/.zshrc
 RUN pip3 --no-cache-dir install simpleitk skimage
 ## Install pytorch-cpu version.
