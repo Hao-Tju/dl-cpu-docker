@@ -39,11 +39,12 @@ RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted 
     python3 get-pip.py && \
     rm get-pip.py
 
-RUN pip3 install mxnet gluoncv jupyterlab scipy numpy==1.18.5 d2l decord onnx pypeln autopep8 insightface
+RUN pip3 --no-cache-dir install mxnet gluoncv jupyterlab scipy numpy==1.18.5 d2l decord onnx pypeln autopep8 insightface
 ## Install packages for medical images.
-RUN pip3 install simpleitk scipy skimage
+RUN apt-get install -y libatlas-dev
+RUN pip3 --no-cache-dir install simpleitk scipy skimage
 ## Install pytorch-cpu version.
-RUN pip3 install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip3 --no-cache-dir install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 
 RUN jupyter notebook --generate-config && echo "c.NotebookApp.ip='127.0.0.1'" >> /root/.jupyter/jupyter_notebook_config.py && \
     echo "c.NotebookApp.open_browser=False" >> /root/.jupyter/jupyter_notebook_config.py && \
